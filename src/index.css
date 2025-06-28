@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Quloon';
+  src: url('./assets/fonts/quloon.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo-font {
+  font-family: 'Quloon', sans-serif;
+}
