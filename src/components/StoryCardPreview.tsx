@@ -25,7 +25,7 @@ export default function StoryCardPreview({
   const [imgLoaded, setImgLoaded] = useState(false);
   return (
     <motion.div
-      className="relative max-w-2xl mx-auto mb-12"
+      className="relative max-w-2xl mx-auto mb-12 transition-all duration-300 hover:scale-105 focus-within:ring-2 focus-within:ring-brand-blue active:scale-95"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -43,14 +43,14 @@ export default function StoryCardPreview({
             onLoad={() => setImgLoaded(true)}
           />
         </div>
-        <div className="flex-1 p-6 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col px-6 py-6 sm:px-8 sm:py-8">
           <div className="flex items-center mb-2 space-x-2">
             {tags.map((tag, i) => (
               <span key={i} className={`text-xs px-2 py-1 rounded-full font-semibold`} style={{ background: tag.color }}>{tag.text}</span>
             ))}
           </div>
-          <h3 className="font-semibold text-lg">{title}</h3>
-          <p className="text-sm text-gray-300 mb-2">{audioInfo}</p>
+          <h3 className="font-semibold text-lg text-white">{title}</h3>
+          <p className="text-sm text-gray-200 mb-2">{audioInfo}</p>
           <div className="mb-2">
             <div className="w-full bg-gray-700/40 rounded-full h-2 mb-1">
               <motion.div
@@ -62,17 +62,17 @@ export default function StoryCardPreview({
             </div>
             <div className="flex items-center space-x-2">
               <motion.button
-                className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center hover:scale-110 focus:scale-110 transition-transform shadow-lg"
+                className="w-8 h-8 bg-brand-blue rounded-full flex items-center justify-center hover:scale-110 focus:scale-110 transition-transform shadow-lg focus:ring-2 focus:ring-brand-purple active:scale-95"
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 3v18l15-9-15-9z" /></svg>
               </motion.button>
-              <span className="text-xs text-gray-400">{currentTime} / {duration}</span>
+              <span className="text-xs text-gray-200">{currentTime} / {duration}</span>
             </div>
           </div>
-          <div className="text-sm text-gray-400">{description}</div>
+          <div className="text-sm text-gray-200">{description}</div>
         </div>
       </div>
     </motion.div>

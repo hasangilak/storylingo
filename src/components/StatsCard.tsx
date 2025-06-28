@@ -41,7 +41,7 @@ export default function StatsCard({ icon, iconBg, value, label, badge, tags }: S
 
   return (
     <motion.div
-      className="bg-white/5 rounded-2xl p-6 border border-white/10 flex flex-col items-center shadow-xl backdrop-blur-lg"
+      className="bg-white/5 rounded-2xl px-6 py-6 sm:px-8 sm:py-8 border border-white/10 flex flex-col items-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:scale-105 focus-within:ring-2 focus-within:ring-brand-blue active:scale-95"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -53,8 +53,8 @@ export default function StatsCard({ icon, iconBg, value, label, badge, tags }: S
       >
         {icon}
       </motion.div>
-      <div className="font-bold text-3xl mb-1">{displayValue}</div>
-      <div className="text-gray-400 text-sm mb-2">{label}</div>
+      <div className="font-bold text-3xl text-white mb-1">{displayValue}</div>
+      <div className="text-gray-200 text-sm mb-2">{label}</div>
       <div className="text-xs px-3 py-1 rounded-full font-semibold mb-1" style={{ background: 'rgba(255,255,255,0.05)', color: '#a5b4fc' }}>{badge}</div>
       <div className="flex items-center space-x-2 mt-2">
         {tags.map((tag, i) => (

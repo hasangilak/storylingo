@@ -22,11 +22,11 @@ export default function CommunityChatPreview({ userAvatar, username, question, a
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
     >
-      <div className="bg-white/5 rounded-2xl p-4 border border-white/10 shadow-lg">
+      <div className="bg-white/5 rounded-2xl px-6 py-6 sm:px-8 sm:py-8 border border-white/10 shadow-lg transition-all duration-300 hover:scale-105 focus-within:ring-2 focus-within:ring-brand-blue active:scale-95">
         <div className="flex items-center mb-2">
           <img src={userAvatar} alt={username} className="w-8 h-8 rounded-full mr-2" />
-          <span className="font-semibold">{username}</span>
-          <span className="ml-auto text-xs text-gray-400">Community Q&A</span>
+          <span className="font-semibold text-white">{username}</span>
+          <span className="ml-auto text-xs text-gray-200">Community Q&A</span>
         </div>
         <div className="space-y-2 text-left">
           <motion.div

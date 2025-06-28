@@ -7,9 +7,9 @@ import StatsCard from './components/StatsCard';
 import CommunityChatPreview from './components/CommunityChatPreview';
 import StoryCardPreview from './components/StoryCardPreview';
 import { motion } from 'framer-motion';
+import TestimonialsSection from './components/TestimonialsSection';
 
 export default function StoryLingLanding() {
-  const [currentStory, setCurrentStory] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Dynamic stack for story cards (now using StoryCardPreview)
@@ -66,13 +66,6 @@ export default function StoryLingLanding() {
       return newCards;
     });
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentStory((prev) => (prev + 1) % 3);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 300);
@@ -141,7 +134,7 @@ export default function StoryLingLanding() {
             </div>
 
             {/* --- Animated Story Card Stack (StoryCardPreview) --- */}
-            <div className="relative flex flex-col items-center mb-12 min-h-[520px] w-full max-w-2xl mx-auto mt-40">
+            <div className="relative flex flex-col items-center mb-8 min-h-[420px] w-full max-w-2xl mx-auto mt-62">
               {storyCards.map((card, idx) => (
                 <motion.div
                   key={card.id}
@@ -168,12 +161,14 @@ export default function StoryLingLanding() {
             </div>
 
             {/* --- Community Q&A Chat Preview --- */}
-            <CommunityChatPreview
-              userAvatar="https://randomuser.me/api/portraits/men/32.jpg"
-              username="StoryLingo"
-              question="I'm reading 'The Alchemist' and I don't understand the phrase 'maktub'. What does it mean?"
-              answer="Great question! 'Maktub' is an Arabic word that means 'it is written' or 'it is destined'..."
-            />
+            <div className="mt-8">
+              <CommunityChatPreview
+                userAvatar="https://randomuser.me/api/portraits/men/32.jpg"
+                username="StoryLingo"
+                question="I'm reading 'The Alchemist' and I don't understand the phrase 'maktub'. What does it mean?"
+                answer="Great question! 'Maktub' is an Arabic word that means 'it is written' or 'it is destined'..."
+              />
+            </div>
           </div>
         </div>
       </main>
@@ -265,6 +260,9 @@ export default function StoryLingLanding() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* CTA Section */}
       <section className="relative z-10 px-4 sm:px-6 py-20 sm:py-32">
