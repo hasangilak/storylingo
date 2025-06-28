@@ -1,4 +1,14 @@
 {
+  "preferences": {
+    "visualStyle": "Dark, immersive, glassmorphic backgrounds with animated blurred color blobs and layered gradients.",
+    "typography": "Bold, modern, accessible. Headings use large, gradient, or colored text. Font family: 'Quloon' for headings, system-ui for body.",
+    "colorPalette": "Vibrant accent colors (purple #7B3FF2, blue #3A86FF, teal #1FC8DB, pink #F72585, yellow #FFBE0B), dark backgrounds (#0B0B1F, #18182F), white text (#FFFFFF), and glassy overlays.",
+    "components": "Glassmorphic cards, animated stacks, gradient buttons, high-contrast, accessible UI. All interactive elements must have visible focus rings and pass WCAG AA contrast.",
+    "layout": "Centered, max-w-7xl or max-w-4xl, generous spacing, modern responsive grids.",
+    "microinteractions": "Use Framer Motion for smooth, tactile animations and transitions.",
+    "accessibility": "Keyboard accessible, visible focus rings, ARIA roles, alt text, WCAG AA+ contrast.",
+    "vibe": "Playful, modern, welcoming, focused on storytelling and engagement."
+  },
   "designSystem": {
     "metadata": {
       "name": "StoryLingo Design System",

@@ -2,77 +2,59 @@ import { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import StoryCardPreview from './StoryCardPreview';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const LANGUAGES = [
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'fr', name: 'French', flag: '🇫🇷' },
+  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
+  { code: 'de', name: 'German', flag: '🇩🇪' },
+  { code: 'it', name: 'Italian', flag: '🇮🇹' },
+  { code: 'ja', name: 'Japanese', flag: '🇯🇵' },
+];
+const LEVELS = [
+  { key: 'beginner', label: 'Beginner' },
+  { key: 'intermediate', label: 'Intermediate' },
+  { key: 'advanced', label: 'Advanced' },
+];
+const GOALS = [
+  { key: 'travel', label: 'Travel' },
+  { key: 'work', label: 'Work' },
+  { key: 'school', label: 'School' },
+  { key: 'fun', label: 'Fun' },
+];
+const QUICK_TIPS = [
+  { icon: '📖', title: 'Read', desc: 'Follow the story line by line.' },
+  { icon: '🔊', title: 'Listen', desc: 'Hear native audio and repeat.' },
+  { icon: '📝', title: 'Practice', desc: 'Answer questions and review.' },
+];
+const BADGES = [
+  { icon: '🔥', label: 'Day 1' },
+  { icon: '⭐', label: 'First Story' },
+  { icon: '🏆', label: 'Streak: 0' },
+];
+
+const FEATURED_STORY = {
+  image: '/src/assets/demo1.jpg',
+  tags: [
+    { text: 'Beginner', color: 'bg-blue-500/20 text-blue-300' },
+    { text: 'Classic', color: 'bg-purple-500/20 text-purple-300' }
+  ],
+  title: 'Alice in Wonderland',
+  audioInfo: '10 min audio · English - French',
+  progress: 0,
+  currentTime: '0:00',
+  duration: '10:00',
+  description: 'Alice followed the white rabbit down the hole and found herself in a strange new world...'
+};
 
 export default function StartLearningPage() {
-  // Demo card stack (reuse from landing)
-  const [storyCards, setStoryCards] = useState([
-    {
-      id: 1,
-      image: '/src/assets/demo1.jpg',
-      tags: [
-        { text: 'Beginner', color: 'bg-blue-500/20 text-blue-300' },
-        { text: 'Classic', color: 'bg-purple-500/20 text-purple-300' }
-      ],
-      title: 'Alice in Wonderland',
-      audioInfo: '10 min audio · English - French',
-      progress: 30,
-      currentTime: '3:00',
-      duration: '10:00',
-      description: 'Alice followed the white rabbit down the hole and found herself in a strange new world...'
-    },
-    {
-      id: 2,
-      image: '/src/assets/demo2.jpg',
-      tags: [
-        { text: 'Advanced', color: 'bg-green-500/20 text-green-300' },
-        { text: 'Fable', color: 'bg-yellow-500/20 text-yellow-300' }
-      ],
-      title: 'The Little Prince',
-      audioInfo: '12 min audio · English - German',
-      progress: 60,
-      currentTime: '7:12',
-      duration: '12:00',
-      description: 'The little prince asked the pilot to draw him a sheep and learned about love and loss on his journey.'
-    },
-    {
-      id: 3,
-      image: '/src/assets/demo3.jpg',
-      tags: [
-        { text: 'Intermediate', color: 'bg-purple-500/20 text-purple-300' },
-        { text: 'Popular', color: 'bg-pink-500/20 text-pink-300' }
-      ],
-      title: 'The Alchemist',
-      audioInfo: '15 min audio · English - Spanish',
-      progress: 80,
-      currentTime: '12:00',
-      duration: '15:00',
-      description: 'Santiago, an Andalusian shepherd boy, has a dream about finding a treasure and travels from Spain to Egypt.'
-    },
-  ]);
-
-  // Stacking transforms for 3 cards (bottom to top)
-  const stackTransforms = [
-    'z-10 -translate-y-16 scale-90 -rotate-3 opacity-70',
-    'z-20 -translate-y-8 scale-95 rotate-2 opacity-85',
-    'z-30 translate-y-0 scale-100 rotate-0 opacity-100',
-  ];
-  const stackRing = [
-    'focus:ring-blue-400',
-    'focus:ring-purple-400',
-    'focus:ring-green-400',
-  ];
-
-  const handleCardClick = (idx: number) => {
-    if (idx === storyCards.length - 1) return;
-    // Bring clicked card to top
-    setStoryCards((prev) => {
-      const newStack = [...prev];
-      const [card] = newStack.splice(idx, 1);
-      newStack.push(card);
-      return newStack;
-    });
-  };
+  const [name, setName] = useState('');
+  const [language, setLanguage] = useState('');
+  const [level, setLevel] = useState('');
+  const [goal, setGoal] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const canContinue = name.trim() && language && level;
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -86,51 +68,179 @@ export default function StartLearningPage() {
         <div className="absolute -bottom-40 right-1/3 w-64 h-64 bg-green-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
       </div>
       <Header />
-      {/* Hero Section */}
-      <main className="relative z-10 px-4 sm:px-6 pt-20 pb-24 sm:pb-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl sm:max-w-4xl mx-auto px-2 sm:px-0">
-            <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8">
-              <span className="text-yellow-400 text-lg">★</span>
-              <span className="text-sm">Start Your Language Journey</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Begin Learning with
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent"> StoryLingo</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
-              Choose your path, try an interactive story, and see how fast you can progress. Every journey starts with a single story!
-            </p>
-            {/* --- Animated Story Card Stack (StoryCardPreview) --- */}
-            <div className="relative flex flex-col items-center mb-8 min-h-[420px] w-full max-w-2xl mx-auto mt-12">
-              {storyCards.map((card, idx) => (
-                <motion.div
-                  key={card.id}
-                  layout
-                  transition={{ type: 'spring', stiffness: 500, damping: 40 }}
-                  className={`absolute left-0 right-0 mx-auto w-full max-w-2xl cursor-pointer shadow-2xl transition-all duration-500 ease-in-out ${stackTransforms[idx]} ${stackRing[idx]} focus:outline-none ` +
-                    (idx === 0 ? 'hover:-translate-y-24 hover:scale-95 hover:z-20' : idx === 1 ? 'hover:-translate-y-12 hover:scale-98 hover:z-30' : '')}
-                  tabIndex={0}
-                  aria-label={`Preview story: ${card.title}`}
-                  onClick={() => handleCardClick(idx)}
-                >
-                  <StoryCardPreview
-                    image={card.image}
-                    tags={card.tags}
-                    title={card.title}
-                    audioInfo={card.audioInfo}
-                    progress={card.progress}
-                    currentTime={card.currentTime}
-                    duration={card.duration}
-                    description={card.description}
-                  />
-                </motion.div>
-              ))}
-            </div>
-            {/* --- End Card Stack --- */}
-            {/* --- (Optional) Add more immersive/interactive elements here --- */}
-          </div>
-        </div>
+      <main className="relative z-10 flex flex-col items-center justify-center min-h-[80vh] px-4 py-12">
+        <AnimatePresence mode="wait">
+          {!submitted ? (
+            <motion.div
+              key="onboarding"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="w-full max-w-lg mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-10 flex flex-col items-center"
+              aria-label="Personalized Onboarding"
+            >
+              <h1 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent drop-shadow-xl text-center">
+                Let's get you started!
+              </h1>
+              <p className="text-lg text-gray-200 mb-8 text-center max-w-md">
+                Personalize your learning journey. We'll use this to tailor your experience.
+              </p>
+              {/* Name Input */}
+              <label htmlFor="name" className="w-full text-left font-medium mb-1 text-white/80">Your Name</label>
+              <input
+                id="name"
+                type="text"
+                className="w-full mb-6 px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg transition-all"
+                placeholder="Enter your name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                autoComplete="given-name"
+                minLength={2}
+                maxLength={32}
+                required
+              />
+              {/* Language Selection */}
+              <div className="w-full mb-6">
+                <div className="font-medium mb-2 text-white/80">Choose a Language</div>
+                <div className="grid grid-cols-3 gap-3">
+                  {LANGUAGES.map(l => (
+                    <button
+                      key={l.code}
+                      type="button"
+                      className={`flex flex-col items-center justify-center px-3 py-3 rounded-xl border transition-all text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-blue-400 ${language === l.code ? 'bg-blue-500/20 border-blue-400 scale-105' : 'bg-white/10 border-white/10 hover:bg-blue-500/10'}`}
+                      aria-pressed={language === l.code}
+                      onClick={() => setLanguage(l.code)}
+                      tabIndex={0}
+                    >
+                      <span className="text-2xl mb-1" aria-hidden="true">{l.flag}</span>
+                      <span>{l.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {/* Level Selection */}
+              <div className="w-full mb-6">
+                <div className="font-medium mb-2 text-white/80">Your Level</div>
+                <div className="flex gap-3">
+                  {LEVELS.map(l => (
+                    <button
+                      key={l.key}
+                      type="button"
+                      className={`px-5 py-2 rounded-full border font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 ${level === l.key ? 'bg-purple-500/20 border-purple-400 scale-105 text-purple-200' : 'bg-white/10 border-white/10 hover:bg-purple-500/10 text-white'}`}
+                      aria-pressed={level === l.key}
+                      onClick={() => setLevel(l.key)}
+                      tabIndex={0}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {/* Goal Selection (optional) */}
+              <div className="w-full mb-8">
+                <div className="font-medium mb-2 text-white/80">Your Main Goal <span className="text-xs text-gray-400">(optional)</span></div>
+                <div className="flex gap-3 flex-wrap">
+                  {GOALS.map(g => (
+                    <button
+                      key={g.key}
+                      type="button"
+                      className={`px-4 py-2 rounded-full border font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 ${goal === g.key ? 'bg-green-500/20 border-green-400 scale-105 text-green-200' : 'bg-white/10 border-white/10 hover:bg-green-500/10 text-white'}`}
+                      aria-pressed={goal === g.key}
+                      onClick={() => setGoal(g.key)}
+                      tabIndex={0}
+                    >
+                      {g.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <button
+                className={`w-full py-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-lg shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 ${canContinue ? 'hover:scale-105' : 'opacity-60 cursor-not-allowed'}`}
+                disabled={!canContinue}
+                onClick={() => setSubmitted(true)}
+                tabIndex={0}
+              >
+                Continue
+              </button>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="w-full max-w-2xl mx-auto bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl p-10 flex flex-col items-center"
+              aria-label="Learning Dashboard"
+            >
+              {/* Personalized Welcome */}
+              <div className="flex flex-col items-center mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{LANGUAGES.find(l => l.code === language)?.flag}</span>
+                  <span className="text-lg font-bold text-white/90">{name}</span>
+                  <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-200 text-sm font-semibold ml-2">{LEVELS.find(l => l.key === level)?.label}</span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent drop-shadow-xl text-center mb-2">
+                  Welcome! Ready to start your first story?
+                </h2>
+                <div className="w-full max-w-xs mx-auto mt-2 mb-2">
+                  <div className="flex justify-between text-xs text-white/60 mb-1">
+                    <span>Progress</span>
+                    <span>0%</span>
+                  </div>
+                  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-500" style={{ width: '0%' }} />
+                  </div>
+                </div>
+                {/* Badges */}
+                <div className="flex gap-3 mt-3">
+                  {BADGES.map(b => (
+                    <div key={b.label} className="flex flex-col items-center px-3 py-1 rounded-xl bg-white/10 border border-white/10 text-sm">
+                      <span className="text-xl mb-1">{b.icon}</span>
+                      <span className="text-white/80">{b.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Featured Story Card */}
+              <div className="w-full flex flex-col items-center mb-8">
+                <StoryCardPreview
+                  image={FEATURED_STORY.image}
+                  tags={FEATURED_STORY.tags}
+                  title={FEATURED_STORY.title}
+                  audioInfo={FEATURED_STORY.audioInfo}
+                  progress={FEATURED_STORY.progress}
+                  currentTime={FEATURED_STORY.currentTime}
+                  duration={FEATURED_STORY.duration}
+                  description={FEATURED_STORY.description}
+                />
+                <div className="flex gap-4 mt-4">
+                  <button className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-lg shadow-xl hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    Start Story
+                  </button>
+                  <button className="px-8 py-3 rounded-full border border-white/20 text-white font-bold text-lg shadow-xl hover:bg-white/5 transition-all focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    Try Another Story
+                  </button>
+                </div>
+              </div>
+              {/* Quick Tips */}
+              <div className="w-full flex flex-col md:flex-row gap-4 mb-6 justify-center items-center">
+                {QUICK_TIPS.map(tip => (
+                  <div key={tip.title} className="flex flex-col items-center px-6 py-4 rounded-2xl bg-white/10 border border-white/10 text-center max-w-xs">
+                    <span className="text-2xl mb-2">{tip.icon}</span>
+                    <span className="font-bold text-white/90 mb-1">{tip.title}</span>
+                    <span className="text-white/70 text-sm">{tip.desc}</span>
+                  </div>
+                ))}
+              </div>
+              {/* Support/FAQ Link */}
+              <div className="w-full text-center mt-2">
+                <a href="#" className="text-blue-300 underline hover:text-blue-400 text-sm">Need help? See our quick guide.</a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
       <Footer />
     </div>
