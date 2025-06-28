@@ -1,0 +1,474 @@
+{
+  "designSystem": {
+    "metadata": {
+      "name": "StoryLingo Design System",
+      "version": "1.0.0",
+      "description": "Comprehensive design system for story-based language learning platform",
+      "lastUpdated": "2025-06-28"
+    },
+    "brandIdentity": {
+      "name": "StoryLingo",
+      "tagline": "Where Every Tale Teaches",
+      "mission": "Learn languages through immersive storytelling experiences",
+      "personality": ["engaging", "educational", "friendly", "cultural", "progressive"]
+    },
+    "colors": {
+      "primary": {
+        "50": "#fef7ee",
+        "100": "#fdebd7",
+        "200": "#fbd5ae",
+        "300": "#f8b87a",
+        "400": "#f59144",
+        "500": "#f2721f",
+        "600": "#e35815",
+        "700": "#bc4213",
+        "800": "#963417",
+        "900": "#792d15"
+      },
+      "secondary": {
+        "50": "#f0f9ff",
+        "100": "#e0f2fe",
+        "200": "#bae6fd",
+        "300": "#7dd3fc",
+        "400": "#38bdf8",
+        "500": "#0ea5e9",
+        "600": "#0284c7",
+        "700": "#0369a1",
+        "800": "#075985",
+        "900": "#0c4a6e"
+      },
+      "accent": {
+        "purple": "#8b5cf6",
+        "green": "#10b981",
+        "yellow": "#fbbf24",
+        "pink": "#ec4899"
+      },
+      "neutral": {
+        "50": "#fafafa",
+        "100": "#f5f5f5",
+        "200": "#e5e5e5",
+        "300": "#d4d4d4",
+        "400": "#a3a3a3",
+        "500": "#737373",
+        "600": "#525252",
+        "700": "#404040",
+        "800": "#262626",
+        "900": "#171717"
+      },
+      "semantic": {
+        "success": "#10b981",
+        "warning": "#f59e0b",
+        "error": "#ef4444",
+        "info": "#3b82f6"
+      }
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "heading": "Poppins, Inter, sans-serif",
+        "display": "Playfair Display, Georgia, serif",
+        "mono": "JetBrains Mono, 'Fira Code', monospace"
+      },
+      "fontSizes": {
+        "xs": "0.75rem",
+        "sm": "0.875rem",
+        "base": "1rem",
+        "lg": "1.125rem",
+        "xl": "1.25rem",
+        "2xl": "1.5rem",
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "3.75rem"
+      },
+      "fontWeights": {
+        "light": 300,
+        "normal": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      },
+      "lineHeights": {
+        "tight": 1.25,
+        "snug": 1.375,
+        "normal": 1.5,
+        "relaxed": 1.625,
+        "loose": 2
+      }
+    },
+    "spacing": {
+      "scale": {
+        "1": "0.25rem",
+        "2": "0.5rem",
+        "3": "0.75rem",
+        "4": "1rem",
+        "5": "1.25rem",
+        "6": "1.5rem",
+        "8": "2rem",
+        "10": "2.5rem",
+        "12": "3rem",
+        "16": "4rem",
+        "20": "5rem",
+        "24": "6rem",
+        "32": "8rem"
+      }
+    },
+    "borderRadius": {
+      "none": "0",
+      "sm": "0.125rem",
+      "base": "0.25rem",
+      "md": "0.375rem",
+      "lg": "0.5rem",
+      "xl": "0.75rem",
+      "2xl": "1rem",
+      "3xl": "1.5rem",
+      "full": "9999px"
+    },
+    "shadows": {
+      "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      "base": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      "md": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      "xl": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+      "inner": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
+    }
+  },
+  "components": {
+    "button": {
+      "variants": {
+        "primary": {
+          "backgroundColor": "primary.500",
+          "color": "white",
+          "borderRadius": "lg",
+          "padding": "12px 24px",
+          "fontSize": "base",
+          "fontWeight": "medium",
+          "hover": {
+            "backgroundColor": "primary.600",
+            "transform": "translateY(-1px)",
+            "boxShadow": "lg"
+          }
+        },
+        "secondary": {
+          "backgroundColor": "transparent",
+          "color": "primary.500",
+          "border": "2px solid primary.500",
+          "borderRadius": "lg",
+          "padding": "10px 22px",
+          "fontSize": "base",
+          "fontWeight": "medium",
+          "hover": {
+            "backgroundColor": "primary.50",
+            "transform": "translateY(-1px)"
+          }
+        },
+        "ghost": {
+          "backgroundColor": "transparent",
+          "color": "neutral.700",
+          "padding": "8px 16px",
+          "borderRadius": "md",
+          "hover": {
+            "backgroundColor": "neutral.100"
+          }
+        }
+      }
+    },
+    "card": {
+      "base": {
+        "backgroundColor": "white",
+        "borderRadius": "xl",
+        "boxShadow": "md",
+        "padding": "24px",
+        "border": "1px solid neutral.200"
+      },
+      "variants": {
+        "story": {
+          "backgroundColor": "white",
+          "borderRadius": "2xl",
+          "boxShadow": "lg",
+          "padding": "0",
+          "overflow": "hidden",
+          "hover": {
+            "transform": "translateY(-4px)",
+            "boxShadow": "xl"
+          }
+        },
+        "lesson": {
+          "backgroundColor": "gradient-to-br from-primary.50 to-secondary.50",
+          "borderRadius": "xl",
+          "padding": "20px",
+          "border": "2px solid primary.200"
+        }
+      }
+    },
+    "input": {
+      "base": {
+        "backgroundColor": "white",
+        "border": "2px solid neutral.300",
+        "borderRadius": "lg",
+        "padding": "12px 16px",
+        "fontSize": "base",
+        "focus": {
+          "borderColor": "primary.500",
+          "boxShadow": "0 0 0 3px primary.100"
+        }
+      }
+    },
+    "badge": {
+      "variants": {
+        "level": {
+          "beginner": {
+            "backgroundColor": "semantic.success",
+            "color": "white",
+            "fontSize": "xs",
+            "fontWeight": "medium",
+            "padding": "4px 8px",
+            "borderRadius": "full"
+          },
+          "intermediate": {
+            "backgroundColor": "semantic.warning",
+            "color": "white",
+            "fontSize": "xs",
+            "fontWeight": "medium",
+            "padding": "4px 8px",
+            "borderRadius": "full"
+          },
+          "advanced": {
+            "backgroundColor": "semantic.error",
+            "color": "white",
+            "fontSize": "xs",
+            "fontWeight": "medium",
+            "padding": "4px 8px",
+            "borderRadius": "full"
+          }
+        }
+      }
+    }
+  },
+  "layouts": {
+    "header": {
+      "height": "80px",
+      "backgroundColor": "white",
+      "borderBottom": "1px solid neutral.200",
+      "padding": "0 24px",
+      "display": "flex",
+      "alignItems": "center",
+      "justifyContent": "space-between",
+      "position": "sticky",
+      "top": "0",
+      "zIndex": "50"
+    },
+    "sidebar": {
+      "width": "280px",
+      "backgroundColor": "neutral.50",
+      "borderRight": "1px solid neutral.200",
+      "padding": "24px",
+      "position": "fixed",
+      "height": "100vh",
+      "overflowY": "auto"
+    },
+    "main": {
+      "marginLeft": "280px",
+      "padding": "32px",
+      "minHeight": "calc(100vh - 80px)"
+    },
+    "container": {
+      "maxWidth": "1200px",
+      "margin": "0 auto",
+      "padding": "0 24px"
+    }
+  },
+  "pages": {
+    "landing": {
+      "hero": {
+        "backgroundColor": "gradient-to-br from-primary.50 via-white to-secondary.50",
+        "padding": "80px 0",
+        "textAlign": "center",
+        "title": {
+          "fontSize": "5xl",
+          "fontWeight": "bold",
+          "fontFamily": "heading",
+          "color": "neutral.900",
+          "marginBottom": "24px"
+        },
+        "subtitle": {
+          "fontSize": "xl",
+          "color": "neutral.600",
+          "marginBottom": "32px",
+          "maxWidth": "600px",
+          "margin": "0 auto"
+        }
+      },
+      "features": {
+        "backgroundColor": "white",
+        "padding": "80px 0",
+        "grid": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(auto-fit, minmax(300px, 1fr))",
+          "gap": "32px"
+        }
+      }
+    },
+    "dashboard": {
+      "backgroundColor": "neutral.50",
+      "layout": "sidebar",
+      "sections": {
+        "progress": {
+          "backgroundColor": "white",
+          "borderRadius": "xl",
+          "padding": "24px",
+          "marginBottom": "24px"
+        },
+        "stories": {
+          "display": "grid",
+          "gridTemplateColumns": "repeat(auto-fill, minmax(300px, 1fr))",
+          "gap": "24px"
+        }
+      }
+    },
+    "story": {
+      "backgroundColor": "white",
+      "maxWidth": "800px",
+      "margin": "0 auto",
+      "padding": "32px",
+      "reader": {
+        "fontSize": "lg",
+        "lineHeight": "relaxed",
+        "fontFamily": "primary",
+        "color": "neutral.800"
+      }
+    }
+  },
+  "interactions": {
+    "animations": {
+      "fadeIn": {
+        "keyframes": {
+          "from": { "opacity": 0, "transform": "translateY(20px)" },
+          "to": { "opacity": 1, "transform": "translateY(0)" }
+        },
+        "duration": "0.6s",
+        "easing": "ease-out"
+      },
+      "slideIn": {
+        "keyframes": {
+          "from": { "transform": "translateX(-100%)" },
+          "to": { "transform": "translateX(0)" }
+        },
+        "duration": "0.4s",
+        "easing": "ease-out"
+      },
+      "scaleIn": {
+        "keyframes": {
+          "from": { "transform": "scale(0.9)", "opacity": 0 },
+          "to": { "transform": "scale(1)", "opacity": 1 }
+        },
+        "duration": "0.3s",
+        "easing": "ease-out"
+      }
+    },
+    "transitions": {
+      "default": "all 0.2s ease-in-out",
+      "slow": "all 0.3s ease-in-out",
+      "fast": "all 0.1s ease-in-out"
+    }
+  },
+  "responsive": {
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    },
+    "layouts": {
+      "mobile": {
+        "sidebar": {
+          "position": "fixed",
+          "transform": "translateX(-100%)",
+          "transition": "transform 0.3s ease-in-out",
+          "zIndex": "40"
+        },
+        "main": {
+          "marginLeft": "0",
+          "padding": "16px"
+        },
+        "header": {
+          "padding": "0 16px"
+        }
+      }
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "categories": {
+      "navigation": ["Menu", "X", "ChevronLeft", "ChevronRight", "Home"],
+      "learning": ["Book", "BookOpen", "Play", "Pause", "Volume2", "VolumeX"],
+      "progress": ["TrendingUp", "Award", "Star", "CheckCircle", "Circle"],
+      "user": ["User", "Settings", "LogOut", "Heart", "Bookmark"],
+      "content": ["Image", "Video", "Mic", "Speaker", "Download"]
+    }
+  },
+  "content": {
+    "languageLevels": {
+      "beginner": {
+        "label": "Beginner",
+        "color": "semantic.success",
+        "description": "Just starting your language journey"
+      },
+      "intermediate": {
+        "label": "Intermediate",
+        "color": "semantic.warning",
+        "description": "Building confidence and expanding vocabulary"
+      },
+      "advanced": {
+        "label": "Advanced",
+        "color": "semantic.error",
+        "description": "Mastering complex concepts and nuances"
+      }
+    },
+    "storyCategories": {
+      "fairy-tales": {
+        "label": "Fairy Tales",
+        "icon": "Sparkles",
+        "color": "accent.purple"
+      },
+      "adventures": {
+        "label": "Adventures",
+        "icon": "Compass",
+        "color": "accent.green"
+      },
+      "mysteries": {
+        "label": "Mysteries",
+        "icon": "Search",
+        "color": "accent.yellow"
+      },
+      "romance": {
+        "label": "Romance",
+        "icon": "Heart",
+        "color": "accent.pink"
+      }
+    }
+  },
+  "accessibility": {
+    "focusRing": {
+      "outline": "2px solid primary.500",
+      "outlineOffset": "2px"
+    },
+    "textContrast": {
+      "minimum": "4.5:1",
+      "enhanced": "7:1"
+    },
+    "minClickTarget": "44px"
+  },
+  "performance": {
+    "imageOptimization": {
+      "formats": ["webp", "avif", "jpg"],
+      "sizes": ["sm: 320w", "md: 640w", "lg: 1280w", "xl: 1920w"]
+    },
+    "lazyLoading": {
+      "enabled": true,
+      "threshold": "50px"
+    }
+  }
+}

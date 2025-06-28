@@ -1,148 +1,138 @@
 import { useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import StoryCardPreview from './StoryCardPreview';
+import { motion } from 'framer-motion';
 
 export default function StartLearningPage() {
-  // TODO: Replace with real user data and progress
-  const userName = 'Learner';
-  const progress = 40; // percent, placeholder
+  // Demo card stack (reuse from landing)
+  const [storyCards, setStoryCards] = useState([
+    {
+      id: 1,
+      image: '/src/assets/demo1.jpg',
+      tags: [
+        { text: 'Beginner', color: 'bg-blue-500/20 text-blue-300' },
+        { text: 'Classic', color: 'bg-purple-500/20 text-purple-300' }
+      ],
+      title: 'Alice in Wonderland',
+      audioInfo: '10 min audio · English - French',
+      progress: 30,
+      currentTime: '3:00',
+      duration: '10:00',
+      description: 'Alice followed the white rabbit down the hole and found herself in a strange new world...'
+    },
+    {
+      id: 2,
+      image: '/src/assets/demo2.jpg',
+      tags: [
+        { text: 'Advanced', color: 'bg-green-500/20 text-green-300' },
+        { text: 'Fable', color: 'bg-yellow-500/20 text-yellow-300' }
+      ],
+      title: 'The Little Prince',
+      audioInfo: '12 min audio · English - German',
+      progress: 60,
+      currentTime: '7:12',
+      duration: '12:00',
+      description: 'The little prince asked the pilot to draw him a sheep and learned about love and loss on his journey.'
+    },
+    {
+      id: 3,
+      image: '/src/assets/demo3.jpg',
+      tags: [
+        { text: 'Intermediate', color: 'bg-purple-500/20 text-purple-300' },
+        { text: 'Popular', color: 'bg-pink-500/20 text-pink-300' }
+      ],
+      title: 'The Alchemist',
+      audioInfo: '15 min audio · English - Spanish',
+      progress: 80,
+      currentTime: '12:00',
+      duration: '15:00',
+      description: 'Santiago, an Andalusian shepherd boy, has a dream about finding a treasure and travels from Spain to Egypt.'
+    },
+  ]);
 
-  // Learning Path Selector data
-  const learningPaths = [
-    {
-      key: 'story',
-      title: 'Story Mode',
-      description: 'Learn through immersive, interactive stories tailored to your level.',
-      icon: '📖',
-    },
-    {
-      key: 'quick',
-      title: 'Quick Practice',
-      description: 'Short, focused exercises for busy days. Practice anytime.',
-      icon: '⚡',
-    },
-    {
-      key: 'custom',
-      title: 'Custom Path',
-      description: 'Choose your own adventure and set your learning goals.',
-      icon: '🛤️',
-    },
+  // Stacking transforms for 3 cards (bottom to top)
+  const stackTransforms = [
+    'z-10 -translate-y-16 scale-90 -rotate-3 opacity-70',
+    'z-20 -translate-y-8 scale-95 rotate-2 opacity-85',
+    'z-30 translate-y-0 scale-100 rotate-0 opacity-100',
   ];
-  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+  const stackRing = [
+    'focus:ring-blue-400',
+    'focus:ring-purple-400',
+    'focus:ring-green-400',
+  ];
 
-  return (
-    <div className="relative min-h-screen bg-gradient-to-br from-brand-purple/70 via-brand-blue/60 to-brand-bg/90 text-white flex flex-col overflow-x-hidden">
-      {/* Accent blurred shapes for depth */}
-      <div className="absolute -top-24 -left-24 w-72 h-72 bg-brand-purple/30 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-blue/30 rounded-full blur-3xl z-0" />
-      <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-brand-accent/20 rounded-full blur-3xl z-0" />
-      {/* Hero Section */}
-      <section className="relative w-full px-4 sm:px-8 pt-16 pb-10 mb-8 z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent drop-shadow-xl">
-            Welcome{userName ? `, ${userName}` : ''}!
-          </h1>
-          <p className="text-2xl md:text-3xl text-brand-textSecondary mb-6 drop-shadow">
-            Master a new language through stories. Your journey starts here.
-          </p>
-          {/* Progress Bar (placeholder) */}
-          <div className="w-full max-w-md mx-auto mt-4">
-            <div className="flex justify-between text-sm text-brand-textSecondary mb-1">
-              <span>Progress</span>
-              <span>{progress}%</span>
-            </div>
-            <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-              <div
-                className="h-3 bg-gradient-to-r from-brand-purple to-brand-blue rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Learning Path Selector */}
-      <section className="relative w-full max-w-4xl mx-auto px-4 sm:px-8 mb-12 z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent drop-shadow-xl">Choose Your Learning Path</h2>
-        <div className="flex flex-col sm:flex-row gap-8 justify-center items-stretch">
-          {learningPaths.map((path) => (
-            <button
-              key={path.key}
-              onClick={() => setSelectedPath(path.key)}
-              className={`flex-1 bg-white/10 backdrop-blur-xl border-2 transition-all duration-200 rounded-3xl p-8 flex flex-col items-center shadow-2xl focus:outline-none focus:ring-2 focus:ring-brand-blue/70 hover:scale-105 hover:shadow-2xl
-                ${selectedPath === path.key ? 'border-brand-blue bg-brand-blue/30 scale-105 ring-2 ring-brand-blue' : 'border-white/10'}`}
-              aria-pressed={selectedPath === path.key}
-              style={{ minWidth: 220 }}
-            >
-              <span className="text-5xl mb-4" aria-hidden="true">{path.icon}</span>
-              <span className="text-xl font-semibold mb-2 bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent drop-shadow">{path.title}</span>
-              <span className="text-brand-textSecondary text-base text-center drop-shadow">{path.description}</span>
-            </button>
-          ))}
-        </div>
-        {selectedPath && (
-          <div className="flex justify-center mt-8">
-            <button
-              className="px-10 py-4 rounded-full bg-gradient-to-r from-brand-purple to-brand-blue text-white font-bold shadow-xl hover:scale-105 transition-all focus:outline-none focus:ring-2 focus:ring-brand-blue text-lg"
-              // TODO: Implement navigation/logic for continuing with selected path
-            >
-              Continue
-            </button>
-          </div>
-        )}
-      </section>
-      {/* Story Demo Section */}
-      <section className="relative w-full max-w-3xl mx-auto px-4 sm:px-8 mb-16 z-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-center bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent drop-shadow-xl">Try a Story Demo</h2>
-        <div className="flex justify-center">
-          <StoryDemoPreview />
-        </div>
-      </section>
-      {/* TODO: Add the rest of the Start Learning page sections here */}
-      <div className="flex-1 flex flex-col items-center justify-center z-10">
-        <p className="text-lg text-brand-textSecondary">This is the new Start Learning page. (TODO: Implement full design and features.)</p>
-      </div>
-    </div>
-  );
-}
-
-// Inline demo component for the Start Learning page
-function StoryDemoPreview() {
-  // Sample story data
-  const [selected, setSelected] = useState<number | null>(null);
-  const [feedback, setFeedback] = useState<string | null>(null);
-  const storyLine = {
-    original: '¿Cómo te llamas?',
-    translation: 'What is your name?',
-    options: ['How old are you?', 'What is your name?', 'Where are you from?'],
-    correct: 1,
+  const handleCardClick = (idx: number) => {
+    if (idx === storyCards.length - 1) return;
+    // Bring clicked card to top
+    setStoryCards((prev) => {
+      const newStack = [...prev];
+      const [card] = newStack.splice(idx, 1);
+      newStack.push(card);
+      return newStack;
+    });
   };
+
   return (
-    <div className="bg-white/10 backdrop-blur-2xl border-2 border-brand-blue/30 rounded-3xl p-10 shadow-2xl max-w-md w-full flex flex-col items-center transition-all duration-300">
-      <div className="mb-4 text-2xl text-white text-center font-semibold drop-shadow">{storyLine.original}</div>
-      <div className="mb-2 text-blue-200 text-center text-base italic">{storyLine.translation}</div>
-      <div className="flex flex-col gap-4 w-full mt-4">
-        {storyLine.options.map((opt, i) => (
-          <button
-            key={i}
-            className={`w-full px-4 py-3 rounded-xl font-semibold transition-all border-2 focus:outline-none focus:ring-2 focus:ring-brand-blue/70 text-lg
-              ${selected === i
-                ? i === storyLine.correct
-                  ? 'bg-green-500/30 border-green-400 text-green-200'
-                  : 'bg-red-500/30 border-red-400 text-red-200'
-                : 'bg-brand-surface/60 border-white/10 text-white hover:bg-brand-blue/20'}`}
-            onClick={() => {
-              setSelected(i);
-              setFeedback(i === storyLine.correct ? 'Correct! 🎉' : 'Try again!');
-            }}
-            disabled={selected !== null}
-            aria-pressed={selected === i}
-          >
-            {opt}
-          </button>
-        ))}
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Background Gradient */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-green-900/20" />
+      <div className="fixed inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute -bottom-40 right-1/3 w-64 h-64 bg-green-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
       </div>
-      {feedback && (
-        <div className={`mt-6 text-center font-bold text-xl ${feedback.startsWith('Correct') ? 'text-green-400' : 'text-red-400'}`}>{feedback}</div>
-      )}
-      <div className="mt-8 text-xs text-gray-300">This is a sample of how interactive stories work in StoryLingo.</div>
+      <Header />
+      {/* Hero Section */}
+      <main className="relative z-10 px-4 sm:px-6 pt-20 pb-24 sm:pb-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl sm:max-w-4xl mx-auto px-2 sm:px-0">
+            <div className="inline-flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-4 py-2 mb-8">
+              <span className="text-yellow-400 text-lg">★</span>
+              <span className="text-sm">Start Your Language Journey</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Begin Learning with
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-green-400 bg-clip-text text-transparent"> StoryLingo</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+              Choose your path, try an interactive story, and see how fast you can progress. Every journey starts with a single story!
+            </p>
+            {/* --- Animated Story Card Stack (StoryCardPreview) --- */}
+            <div className="relative flex flex-col items-center mb-8 min-h-[420px] w-full max-w-2xl mx-auto mt-12">
+              {storyCards.map((card, idx) => (
+                <motion.div
+                  key={card.id}
+                  layout
+                  transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+                  className={`absolute left-0 right-0 mx-auto w-full max-w-2xl cursor-pointer shadow-2xl transition-all duration-500 ease-in-out ${stackTransforms[idx]} ${stackRing[idx]} focus:outline-none ` +
+                    (idx === 0 ? 'hover:-translate-y-24 hover:scale-95 hover:z-20' : idx === 1 ? 'hover:-translate-y-12 hover:scale-98 hover:z-30' : '')}
+                  tabIndex={0}
+                  aria-label={`Preview story: ${card.title}`}
+                  onClick={() => handleCardClick(idx)}
+                >
+                  <StoryCardPreview
+                    image={card.image}
+                    tags={card.tags}
+                    title={card.title}
+                    audioInfo={card.audioInfo}
+                    progress={card.progress}
+                    currentTime={card.currentTime}
+                    duration={card.duration}
+                    description={card.description}
+                  />
+                </motion.div>
+              ))}
+            </div>
+            {/* --- End Card Stack --- */}
+            {/* --- (Optional) Add more immersive/interactive elements here --- */}
+          </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 } 

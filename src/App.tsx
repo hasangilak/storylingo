@@ -164,12 +164,12 @@ function LandingPage() {
 
             {/* --- Community Q&A Chat Preview --- */}
             <div className="mt-8">
-              <CommunityChatPreview
-                userAvatar="https://randomuser.me/api/portraits/men/32.jpg"
-                username="StoryLingo"
-                question="I'm reading 'The Alchemist' and I don't understand the phrase 'maktub'. What does it mean?"
-                answer="Great question! 'Maktub' is an Arabic word that means 'it is written' or 'it is destined'..."
-              />
+            <CommunityChatPreview
+              userAvatar="https://randomuser.me/api/portraits/men/32.jpg"
+              username="StoryLingo"
+              question="I'm reading 'The Alchemist' and I don't understand the phrase 'maktub'. What does it mean?"
+              answer="Great question! 'Maktub' is an Arabic word that means 'it is written' or 'it is destined'..."
+            />
             </div>
           </div>
         </div>
