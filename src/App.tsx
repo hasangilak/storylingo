@@ -8,8 +8,10 @@ import CommunityChatPreview from './components/CommunityChatPreview';
 import StoryCardPreview from './components/StoryCardPreview';
 import { motion } from 'framer-motion';
 import TestimonialsSection from './components/TestimonialsSection';
+import { Routes, Route, Link } from 'react-router-dom';
+import StartLearningPage from './components/StartLearningPage';
 
-export default function StoryLingLanding() {
+function LandingPage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Dynamic stack for story cards (now using StoryCardPreview)
@@ -123,10 +125,10 @@ export default function StoryLingLanding() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <button className="group bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 ripple">
+              <Link to="/start-learning" className="group bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 ripple">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>Start Learning</span>
-              </button>
+              </Link>
               <button className="border border-white/20 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/5 transition-all duration-300 flex items-center justify-center space-x-2 ripple">
                 <Download className="w-5 h-5" />
                 <span>Download App</span>
@@ -300,5 +302,14 @@ export default function StoryLingLanding() {
         <ChevronUp className="w-6 h-6" />
       </motion.button>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/start-learning" element={<StartLearningPage />} />
+    </Routes>
   );
 }
